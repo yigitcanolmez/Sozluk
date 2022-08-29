@@ -12,6 +12,5 @@ namespace BlazorSozlukApi.Domain.Models
         public Guid CreatedById { get; set; }
         public virtual Entry Entry { get; set; }
         public virtual User CreatedUser { get; set; }
-
     }
 }

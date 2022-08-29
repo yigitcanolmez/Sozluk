@@ -12,6 +12,10 @@ namespace BlazorSozluk.Infastructure.Persistance.Context
     public class BlazorSozlukContext : DbContext
     {
         public const string DEFAULT_SCHEMA = "dbo";
+        public BlazorSozlukContext()
+        {
+
+        }
         public BlazorSozlukContext(DbContextOptions options) : base(options)
         {
 
@@ -24,6 +28,19 @@ namespace BlazorSozluk.Infastructure.Persistance.Context
         public DbSet<EntryCommentFavorite> EntryCommentFavorites { get; set; }
         public DbSet<EntryCommentVote> EntryCommentVotes { get; set; }
         public DbSet<EmailConfirmation> EmailConfirmations { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                var connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=blazorsozluk;Persist Security Info=True";
+                optionsBuilder.UseSqlServer(connStr, opt =>
+                {
+                    opt.EnableRetryOnFailure();
+                });
+            }
+
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -62,8 +79,8 @@ namespace BlazorSozluk.Infastructure.Persistance.Context
         {
             foreach (var entity in entities)
             {
-                if(entity.CreatedDate == DateTime.MinValue)
-                entity.CreatedDate = DateTime.Now;
+                if (entity.CreatedDate == DateTime.MinValue)
+                    entity.CreatedDate = DateTime.Now;
             }
         }
     }
