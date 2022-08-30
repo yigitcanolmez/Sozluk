@@ -37,7 +37,37 @@ namespace BlazorSozluk.Infastructure.Persistance.Context
 
             var context = new BlazorSozlukContext(dbContextBuilder.Options);
 
-         
+            var users = GetUsers();
+            var usersIds = users.Select(i => i.Id);
+
+            await context.Users.AddRangeAsync(users);
+
+            var guids = Enumerable.Range(0, 150).Select(i => Guid.NewGuid()).ToList();
+            int counter = 0;
+            var entries = new Faker<Entry>("tr")
+                .RuleFor(i => i.Id, i=>guids[counter++])
+                .RuleFor(i => i.CreatedDate, i => i.Date.Between(DateTime.Now.AddDays(-100), DateTime.Now))
+                .RuleFor(i => i.Subject, i => i.Lorem.Sentence(5, 5))
+                .RuleFor(i => i.Content, i => i.Lorem.Paragraph(2))
+                .RuleFor(i => i.CreatedById, i => i.PickRandom(usersIds))
+                .Generate(150);
+            await context.Entries.AddRangeAsync(entries);
+
+            var comments = new Faker<EntryComment>("tr")
+                .RuleFor(i => i.Id,i=> Guid.NewGuid())
+                .RuleFor(i => i.CreatedDate, i => i.Date.Between(DateTime.Now.AddDays(-100), DateTime.Now))
+                .RuleFor(i => i.Content, i => i.Lorem.Paragraph(2))
+                .RuleFor(i => i.CreatedById, i => i.PickRandom(usersIds))
+                .RuleFor(i => i.EntryId, i => i.PickRandom(guids))
+                .Generate(1000);
+
+            await context.EntryComments.AddRangeAsync(comments);
+
+            await context.SaveChangesAsync();
+
+
+
+
         }
     }
 }
