@@ -190,9 +190,16 @@ namespace BlazorSozluk.Infastructure.Persistance.Repositories
             return await query.ToListAsync();
         }
 
+        //TODO
         public virtual async Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> predicate, bool noTracking = true, params Expression<Func<TEntity, object>>[] includes)
         {
-            throw new NotImplementedException();
+            var query = entity.AsQueryable();
+            if (predicate != null)
+                query = query.Where(predicate);
+            if (noTracking)
+                query = query.AsNoTracking();
+
+            return await query.FirstAsync();
         }
 
 
