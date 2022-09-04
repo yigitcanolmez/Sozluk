@@ -13,9 +13,9 @@ namespace BlazorSozluk.Infastructure.Persistance.Repositories
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
-        private readonly BlazorSozlukContext dbcontext;
+        private readonly DbContext dbcontext;
         protected DbSet<TEntity> entity => dbcontext.Set<TEntity>();
-        public GenericRepository(BlazorSozlukContext dbcontext)
+        public GenericRepository(DbContext dbcontext)
         {
             this.dbcontext = dbcontext ?? throw new ArgumentNullException(nameof(dbcontext));
         }
@@ -98,7 +98,7 @@ namespace BlazorSozluk.Infastructure.Persistance.Repositories
 
         public virtual bool DeleteRange(Expression<Func<TEntity, bool>> predicate)
         {
-            dbcontext.RemoveRange(predicate);
+            dbcontext.RemoveRange(entity.Where(predicate));
             return dbcontext.SaveChanges() > 0;
         }
 

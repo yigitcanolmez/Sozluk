@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorSozluk.Infastructure.Persistance.Migrations
 {
     [DbContext(typeof(BlazorSozlukContext))]
-    [Migration("20220829094935_InitMigration")]
-    partial class InitMigration
+    [Migration("20220904083301_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

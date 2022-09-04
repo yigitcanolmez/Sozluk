@@ -1,3 +1,4 @@
+using BlazorSozluk.Api.Application.Extensions;
 using BlazorSozluk.Infastructure.Persistance.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructureRegistration(builder.Configuration);
 
+builder.Services.AddApplicationRegistration();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
