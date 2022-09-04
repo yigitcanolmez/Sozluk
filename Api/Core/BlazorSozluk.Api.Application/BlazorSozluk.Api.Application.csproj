@@ -9,7 +9,6 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageReference Include="Castle.Core" Version="5.1.0" />
     <PackageReference Include="FluentValidation" Version="11.2.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.1" />
     <PackageReference Include="MediatR" Version="10.0.1" />
@@ -24,11 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazorSozlukApi.Domain\BlazorSozlukApi.Domain.csproj" />
+    <Folder Include="Features\Commands\User\Login\" />
+    <Folder Include="Features\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Queries\" />
+    <ProjectReference Include="..\BlazorSozlukApi.Domain\BlazorSozlukApi.Domain.csproj" />
   </ItemGroup>
 
 </Project>
