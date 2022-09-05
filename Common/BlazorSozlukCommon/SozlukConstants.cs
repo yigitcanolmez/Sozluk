@@ -9,7 +9,7 @@ namespace BlazorSozlukCommon
     
     public class SozlukConstants
     {
-        public const string RAbbitMQHost = "localdb\\MSSQLLocalDB";
+        public const string RAbbitMQHost = "localhost";
         public const string DefaultExchangeType= "direct";
 
         public const string UserEmailExchangeName = "UserExchange";
@@ -17,3 +17,4 @@ namespace BlazorSozlukCommon
 
     }
 }
+

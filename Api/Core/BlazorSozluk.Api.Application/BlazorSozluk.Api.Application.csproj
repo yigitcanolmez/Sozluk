@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Queries\**" />
+    <EmbeddedResource Remove="Features\Queries\**" />
+    <None Remove="Features\Queries\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="FluentValidation" Version="11.2.1" />
@@ -24,7 +30,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Commands\User\Login\" />
-    <Folder Include="Features\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
