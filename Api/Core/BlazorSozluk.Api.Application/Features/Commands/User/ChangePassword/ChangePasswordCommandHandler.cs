@@ -34,7 +34,9 @@ namespace BlazorSozluk.Api.Application.Features.Commands.User.ChangePassword
             if (dbUser.Password != encPass)
                 throw new DatabaseValidateExceptions("Old password wrong!");
 
-            dbUser.Password = encPass;
+            var newPassEncred = PasswordEncryptor.Encrpt(request.NewPassword);
+
+            dbUser.Password = newPassEncred;
 
             await userRepository.UpdateAsync(dbUser);
 
