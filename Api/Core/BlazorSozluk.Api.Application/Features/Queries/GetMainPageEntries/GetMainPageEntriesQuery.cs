@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BlazorSozluk.Api.Application.Features.Queries.GetEntries.GetMainPageEntries;
-public class GetMainPageEntriesQuery : BasedPageQuery, IRequest<PagedViewModel<GetEntryDetailViewModel>>
+public class GetMainPageEntriesQuery : BasedPageQuery, IRequest<PagedViewModel<GetEntryCommentDetailViewModel>>
 {
     public GetMainPageEntriesQuery(Guid? userId, int page, int pageSize) : base(page, pageSize)
     {

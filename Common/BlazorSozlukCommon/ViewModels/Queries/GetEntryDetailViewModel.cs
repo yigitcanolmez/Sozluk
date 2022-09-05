@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorSozlukCommon.ViewModels.Queries;
 
-public class GetEntryDetailViewModel : BaseFooterRateFavoritedViewModel
+public class GetEntryCommentDetailViewModel : BaseFooterRateFavoritedViewModel
 {
     public Guid Id { get; set; }
     public string Subject { get; set; }
