@@ -8,6 +8,7 @@ namespace BlazorSozluk.Api.WebApi.Controllers
     [ApiController]
     public class BaseController : ControllerBase
     {
-        public Guid UserID => new Guid(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        public Guid? UserID => Guid.NewGuid();
+        // new Guid(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
     }
 }

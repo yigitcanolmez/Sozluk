@@ -1,4 +1,6 @@
-﻿using BlazorSozlukCommon.ViewModels.RequestModels;
+﻿using BlazorSozluk.Api.Application.Features.Queries.GetEntries;
+using BlazorSozluk.Api.Application.Features.Queries.GetEntries.GetMainPageEntries;
+using BlazorSozlukCommon.ViewModels.RequestModels;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +16,24 @@ namespace BlazorSozluk.Api.WebApi.Controllers
         {
             this.meditor = meditor;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetEntries([FromQuery]GetEntriesQuery query)
+        {
+            var entries = await meditor.Send(query);
+            return Ok(entries);
+        }
+        [HttpGet]
+        [Route("MainPageEntries")]
+        public async Task<IActionResult> GetMainPageEntries(int page,int pageSize)
+        {
+            var entries = await meditor.Send(new GetMainPageEntriesQuery(UserID,page, pageSize));
+            return Ok(entries);
+        }
+
+
+
+
 
         [HttpPost]
         [Route("CreateEntry")]
