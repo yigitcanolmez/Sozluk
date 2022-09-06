@@ -37,9 +37,10 @@ namespace BlazorSozluk.Api.WebApi.Controllers
         }
 
         [HttpGet("Comments/{id}")]
-        public async Task<IActionResult> GetEntryComments(Guid id, int page, int pageSize)
+        public async Task<IActionResult> GetEntryComments(Guid entryId, int page, int pageSize)
         {
-            var result = await meditor.Send(new GetEntryCommentsQuery(id, UserID, page, pageSize));
+            var result = await meditor.Send(new GetEntryCommentsQuery(entryId, UserID, page, pageSize));
+
             return Ok(result);
         }
 
