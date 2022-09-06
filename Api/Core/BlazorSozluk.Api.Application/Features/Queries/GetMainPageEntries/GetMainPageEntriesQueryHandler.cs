@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BlazorSozluk.Api.Application.Features.Queries.GetEntries.GetMainPageEntries;
 
-public class GetMainPageEntriesQueryHandler : IRequestHandler<GetMainPageEntriesQuery, PagedViewModel<GetEntryCommentDetailViewModel>>
+public class GetMainPageEntriesQueryHandler : IRequestHandler<GetMainPageEntriesQuery, PagedViewModel<GetEntryDetailViewModel>>
 {
     private readonly IEntryRepository entryRepository;
 
@@ -16,14 +16,14 @@ public class GetMainPageEntriesQueryHandler : IRequestHandler<GetMainPageEntries
     {
         this.entryRepository = entryRepository;
     }
-    public async Task<PagedViewModel<GetEntryCommentDetailViewModel>> Handle(GetMainPageEntriesQuery request, CancellationToken cancellationToken)
+    public async Task<PagedViewModel<GetEntryDetailViewModel>> Handle(GetMainPageEntriesQuery request, CancellationToken cancellationToken)
     {
         var query = entryRepository.AsQueryable();
 
         query = query.Include(i => i.EntryFavorites)
             .Include(i => i.CreatedBy)
             .Include(i => i.EntryVotes);
-        var list = query.Select(i => new GetEntryCommentDetailViewModel()
+        var list = query.Select(i => new GetEntryDetailViewModel()
         {
             Id = i.Id,
             Subject = i.Subject,
