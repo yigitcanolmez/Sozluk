@@ -24,9 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Commands\User\Login\" />
-    <Folder Include="Features\Queries\GetUserDetail\" />
-    <Folder Include="Features\Queries\GetUserEntries\" />
-    <Folder Include="Features\Queries\SearchBySubject\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -28,7 +28,9 @@ namespace BlazorSozluk.Api.Application.Mapper
                 .ReverseMap();
 
             CreateMap<Entry, GetEntriesViewModel>()
-            .ForMember(x=>x.CommentCount, y=> y.MapFrom(z=> z.EntryComments.Count));
+            .ForMember(x=>x.CommentCount, y=> y.MapFrom(z=> z.EntryComments.Count)); 
+            
+        
 
         }
     }

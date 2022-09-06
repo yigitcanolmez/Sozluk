@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlazorSozluk.Api.Application.Features.Queries.GetEntryDetail
 {
-    public class GetEntryDetailQuery: IRequest<GetEntryCommentDetailViewModel>
+    public class GetEntryDetailQuery: IRequest<GetEntryDetailViewModel>
     {
         public Guid EntryId { get; set; }
         public Guid? UserId { get; set; }
