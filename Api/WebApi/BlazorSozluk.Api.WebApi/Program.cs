@@ -1,4 +1,5 @@
 using BlazorSozluk.Api.Application.Extensions;
+using BlazorSozluk.Api.WebApi.Infastructure.Extension;
 using BlazorSozluk.Infastructure.Persistance.Extensions;
 using FluentValidation.AspNetCore;
 
@@ -18,6 +19,9 @@ builder.Services
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.ConfigureAuth(builder.Configuration);
+
 builder.Services.AddInfrastructureRegistration(builder.Configuration);
 
 builder.Services.AddApplicationRegistration();
@@ -31,6 +35,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.ConfigureExceptionHandling(app.Environment.IsDevelopment());
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
