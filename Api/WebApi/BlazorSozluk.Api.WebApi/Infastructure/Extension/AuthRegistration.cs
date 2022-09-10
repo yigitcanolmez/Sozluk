@@ -8,7 +8,7 @@ namespace BlazorSozluk.Api.WebApi.Infastructure.Extension
     {
         public static IServiceCollection ConfigureAuth(this IServiceCollection services, IConfiguration configuration)
         {
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["Jwt:SigningKey"]));
+        //    var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["Jwt:SigningKey"]));
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -22,7 +22,7 @@ namespace BlazorSozluk.Api.WebApi.Infastructure.Extension
                         ValidateAudience = false,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = false,
-                        IssuerSigningKey = signingKey
+                     //   IssuerSigningKey = signingKey
                     };
                 });
             return services;
